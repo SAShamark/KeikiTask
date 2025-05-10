@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 512a2f4dd4bd4ad59d9d9c7814b8d55b, type: 3}
+  m_Name: LevelData
+  m_EditorClassIdentifier: 
+  _levelData:
+  - _groupName: Trace letters
+    _icon: {fileID: 21300000, guid: 5a87cb1ff80a91e4aba35932da79df02, type: 3}
+    _colors:
+    - {r: 0.5803922, g: 0, b: 0.82745105, a: 1}
+    - {r: 0.29411766, g: 0, b: 0.50980395, a: 1}
+    - {r: 0, g: 0, b: 1, a: 1}
+    - {r: 0, g: 1, b: 0, a: 1}
+    - {r: 1, g: 0.9464945, b: 0, a: 1}
+    - {r: 1, g: 0.46021718, b: 0, a: 1}
+    - {r: 1, g: 0, b: 0, a: 1}
+  - _groupName: Trace numbers
+    _icon: {fileID: 21300000, guid: 32d34a39f19f5d24bb4d4c8ae9a57d3d, type: 3}
+    _colors:
+    - {r: 0.5803922, g: 0, b: 0.82745105, a: 1}
+    - {r: 0.29411766, g: 0, b: 0.50980395, a: 1}
+    - {r: 0, g: 0, b: 1, a: 1}
+    - {r: 0, g: 1, b: 0, a: 1}
+    - {r: 1, g: 0.9464945, b: 0, a: 1}
+    - {r: 1, g: 0.46021718, b: 0, a: 1}
+    - {r: 1, g: 0, b: 0, a: 1}
+  - _groupName: Trace shapes
+    _icon: {fileID: 21300000, guid: 9c6fc0b550856374995162ea1ef057fc, type: 3}
+    _colors:
+    - {r: 0.5803922, g: 0, b: 0.82745105, a: 1}
+    - {r: 0.29411766, g: 0, b: 0.50980395, a: 1}
+    - {r: 0, g: 0, b: 1, a: 1}
+    - {r: 0, g: 1, b: 0, a: 1}
+    - {r: 1, g: 0.9464945, b: 0, a: 1}
+    - {r: 1, g: 0.46021718, b: 0, a: 1}
+    - {r: 1, g: 0, b: 0, a: 1}
