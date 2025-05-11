@@ -8,7 +8,7 @@ namespace Audio
     {
         event Action<float> OnMusicVolumeChanged;
         event Action<float> OnSoundVolumeChanged;
-        void Play(AudioGroupType audioGroupType, string name, Vector3 position = new());
+        AudioSource Play(AudioGroupType audioGroupType, string name);
         void MuteSwitcher(AudioGroupType audioGroupType, string name, bool isMute);
         void MuteAllEffectSounds();
         

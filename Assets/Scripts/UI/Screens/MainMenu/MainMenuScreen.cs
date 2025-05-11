@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Gameplay;
 using Services.Scenes;
 using UI.Screens.Base;
 using UI.Screens.MainMenu.Data;
@@ -19,17 +20,19 @@ namespace UI.Screens.MainMenu
         private LevelsConfig _config;
 
         private ISceneLoader _sceneLoader;
+        private LevelsManager _levelsManager;
         private readonly List<LevelsPanel> _panels = new();
 
         [Inject]
-        private void Construct(ISceneLoader sceneLoader)
+        private void Construct(ISceneLoader sceneLoader, LevelsManager levelsManager)
         {
             _sceneLoader = sceneLoader;
+            _levelsManager = levelsManager;
         }
 
         private void OnDestroy()
         {
-            foreach (var panel in _panels)
+            foreach (LevelsPanel panel in _panels)
             {
                 panel.OnLevelButtonClicked -= LevelButtonClicked;
             }
@@ -38,17 +41,19 @@ namespace UI.Screens.MainMenu
         public override void Initialize()
         {
             base.Initialize();
-            foreach (var level in _config.LevelData)
+            for (var index = 0; index < _config.LevelData.Count; index++)
             {
-                var panel = Instantiate(_levelsPanel, _transform);
-                panel.Initialize(level);
+                LevelData data = _config.LevelData[index];
+                LevelsPanel panel = Instantiate(_levelsPanel, _transform);
+                panel.Initialize(data, index);
                 _panels.Add(panel);
                 panel.OnLevelButtonClicked += LevelButtonClicked;
             }
         }
 
-        private void LevelButtonClicked()
+        private void LevelButtonClicked(int groupIndex, int level)
         {
+            _levelsManager.SelectLevel(groupIndex, level);
             _sceneLoader.LoadScene(SceneType.GamePlay, ScreenTypes.Gameplay);
         }
     }

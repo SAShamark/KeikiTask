@@ -1,5 +1,11 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
+using Audio;
+using Audio.Data;
+using DG.Tweening;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Gameplay
 {
@@ -10,9 +16,6 @@ namespace Gameplay
 
         [SerializeField]
         private Transform _follower;
-
-        [SerializeField]
-        private Camera _camera;
 
         [SerializeField]
         private float _threshold = 0.5f;
@@ -32,36 +35,59 @@ namespace Gameplay
         [SerializeField]
         private Transform _routeVisualsParent;
 
+        [SerializeField]
+        private Transform _handTip;
+
+        [SerializeField]
+        private SpriteRenderer _spriteRenderer;
+
+        private Camera _camera;
         private int _currentRouteIndex;
         private int _currentPointIndex;
         private bool _isTracing;
-
         private readonly List<Vector3> _routePoints = new();
+        private IAudioManager _audioManager;
+        private Coroutine _audioCoroutine;
+        private Coroutine _afkCoroutine;
+        private string _soundName;
 
-        private void Start()
+        public event Action OnLevelCompleted;
+
+        private void OnDestroy()
         {
-            LoadRoute(_currentRouteIndex);
+            if (_audioCoroutine != null)
+            {
+                StopCoroutine(_audioCoroutine);
+            }
         }
 
         private void Update()
         {
             if (Input.GetMouseButtonDown(0))
             {
+                if (_afkCoroutine != null)
+                {
+                    StopCoroutine(_afkCoroutine);
+                }
+
+                _handTip.gameObject.SetActive(false);
+
                 _isTracing = true;
             }
 
             if (Input.GetMouseButtonUp(0))
             {
+                _afkCoroutine = StartCoroutine(AfkManage());
                 _isTracing = false;
             }
 
             if (_isTracing && _currentPointIndex < _routePoints.Count)
             {
-                Vector3 touchPos = _camera.ScreenToWorldPoint(Input.mousePosition);
-                touchPos.z = 0f;
+                Vector3 touchPosition = _camera.ScreenToWorldPoint(Input.mousePosition);
+                touchPosition.z = 0f;
 
-                float dist = Vector3.Distance(touchPos, _routePoints[_currentPointIndex]);
-                if (dist <= _threshold)
+                float distance = Vector3.Distance(touchPosition, _routePoints[_currentPointIndex]);
+                if (distance <= _threshold)
                 {
                     _currentPointIndex++;
 
@@ -74,9 +100,13 @@ namespace Gameplay
                         }
                         else
                         {
-                            Debug.Log("Всі маршрути пройдено!");
                             _follower.gameObject.SetActive(false);
                             _isTracing = false;
+
+                            string[] soundNames =
+                                { SoundsConstants.AWESOME, SoundsConstants.EXCELLENT, SoundsConstants.THATS_GOOD };
+                            string randomSound = soundNames[Random.Range(0, soundNames.Length)];
+                            StartCoroutine(PlayAudioThenLoad(randomSound, LevelCompleted));
                         }
                     }
                 }
@@ -89,10 +119,53 @@ namespace Gameplay
             }
         }
 
+        public void Initialize(IAudioManager audioManager, Camera camera, Color color, string soundName)
+        {
+            _camera = camera;
+            _audioManager = audioManager;
+            _spriteRenderer.color = color;
+            _soundName = soundName;
+
+            _audioCoroutine = StartCoroutine(PlayAudioThenLoad(soundName, () => LoadRoute(_currentRouteIndex)));
+            _afkCoroutine = StartCoroutine(AfkManage());
+        }
+
+        private IEnumerator PlayAudioThenLoad(string audioName, Action action)
+        {
+            AudioSource source = _audioManager.Play(AudioGroupType.EffectSounds, audioName);
+            yield return new WaitWhile(() => source.isPlaying);
+            action?.Invoke();
+        }
+
+        private IEnumerator AfkManage()
+        {
+            yield return new WaitForSeconds(7);
+            _audioManager.Play(AudioGroupType.EffectSounds, _soundName);
+            yield return new WaitForSeconds(7);
+            if (_routePoints.Count == 0)
+            {
+                yield break;
+            }
+
+            _handTip.position = _follower.position;
+            _handTip.gameObject.SetActive(true);
+
+            float durationPerSegment = 0.5f;
+
+            for (int i = _currentPointIndex; i < _routePoints.Count; i++)
+            {
+                Vector3 target = _routePoints[i];
+                Tween moveTween = _handTip.DOMove(target, durationPerSegment).SetEase(Ease.Linear);
+                yield return moveTween.WaitForCompletion();
+            }
+
+            _handTip.gameObject.SetActive(false);
+        }
+
         private void LoadRoute(int index)
         {
             _routePoints.Clear();
-
+            _follower.gameObject.SetActive(true);
             foreach (Transform child in _routeVisualsParent)
                 Destroy(child.gameObject);
 
@@ -130,6 +203,11 @@ namespace Gameplay
             _currentPointIndex = 0;
             if (_routePoints.Count > 0)
                 _follower.position = _routePoints[0];
+        }
+
+        private void LevelCompleted()
+        {
+            OnLevelCompleted?.Invoke();
         }
     }
 }

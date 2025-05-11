@@ -14,14 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _audioMixer: {fileID: 24100000, guid: 9923378de9b1f8a4ca08d22dc76aede9, type: 2}
   _audioGroups:
-  - _groupType: 1
-    _audioMixerGroup: {fileID: -698558650540262760, guid: 9923378de9b1f8a4ca08d22dc76aede9, type: 2}
-    _isOneAudioSource: 1
-    _audios: []
-  - _groupType: 2
-    _audioMixerGroup: {fileID: -4044208009277888087, guid: 9923378de9b1f8a4ca08d22dc76aede9, type: 2}
-    _isOneAudioSource: 0
-    _audios: []
   - _groupType: 3
     _audioMixerGroup: {fileID: -4742115945590737552, guid: 9923378de9b1f8a4ca08d22dc76aede9, type: 2}
     _isOneAudioSource: 0

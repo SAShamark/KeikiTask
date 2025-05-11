@@ -1,4 +1,5 @@
 using Audio;
+using Gameplay;
 using Services.Coroutines;
 using Services.Scenes;
 using Services.Storage;
@@ -23,6 +24,7 @@ namespace Installers
         {
             Container.Bind<IStorageService>().To<StorageService>().AsSingle();
             Container.Bind<ISceneLoader>().To<SceneLoader>().AsSingle();
+            Container.Bind<LevelsManager>().AsSingle();
             CoroutineInstaller();
             AudioInstaller();
             UIInstaller();

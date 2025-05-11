@@ -54,8 +54,7 @@ namespace Audio
             ChangeMusicVolume(GetVolume(AudioMixerGroups.Music));
             ChangeSoundVolume(GetVolume(AudioMixerGroups.Sounds));
         }
-
-        public void Play(AudioGroupType audioGroupType, string name, Vector3 position = new())
+        public AudioSource Play(AudioGroupType audioGroupType, string name)
         {
             AudioGroup audioGroup = _audioConfig.FindGroup(audioGroupType);
             AudioInfo audioInfo = audioGroup.FindAudioInfo(name);
@@ -67,11 +66,7 @@ namespace Audio
             audioSourceModel.Source.loop = audioInfo.Loop;
             audioSourceModel.Source.mute = false;
             audioSourceModel.Source.Play();
-
-            if (position != Vector3.zero)
-            {
-                audioSourceModel.transform.position = position;
-            }
+            return audioSourceModel.Source;
         }
 
         public void MuteSwitcher(AudioGroupType audioGroupType, string name, bool isMute)

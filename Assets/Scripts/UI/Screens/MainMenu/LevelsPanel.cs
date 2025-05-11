@@ -17,9 +17,9 @@ namespace UI.Screens.MainMenu
 
         [SerializeField]
         private TMP_Text _text;
-        
+
         private readonly List<LevelButton> _levelButtons = new();
-        public event Action OnLevelButtonClicked;
+        public event Action<int, int> OnLevelButtonClicked;
 
         private void OnDestroy()
         {
@@ -29,21 +29,22 @@ namespace UI.Screens.MainMenu
             }
         }
 
-        public void Initialize(LevelData level)
+        public void Initialize(LevelData data, int index)
         {
-            _text.text = level.GroupName;
-            foreach (var color in level.Colors)
+            _text.text = data.GroupName;
+            for (var level = 0; level < data.Colors.Count; level++)
             {
+                Color color = data.Colors[level];
                 var button = Instantiate(_levelButton, _transform);
-                button.Initialize(level.Sprite, color);
+                button.Initialize(data.Sprite, color, index, level);
                 _levelButtons.Add(button);
                 button.OnButtonClicked += LevelButtonClicked;
             }
         }
 
-        private void LevelButtonClicked()
+        private void LevelButtonClicked(int groupIndex, int level)
         {
-            OnLevelButtonClicked?.Invoke();
+            OnLevelButtonClicked?.Invoke(groupIndex, level);
         }
     }
 }
