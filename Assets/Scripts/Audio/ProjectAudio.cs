@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Audio.Data;
+using Services;
 using Services.Storage;
 using UI.Popups;
 using UnityEngine;
@@ -9,7 +10,7 @@ using Zenject;
 
 namespace Audio
 {
-    public class ProjectAudio : MonoBehaviour, IAudioManager
+    public class ProjectAudio : MonoBehaviour, IAudioManager, ILoadingInitialization
     {
         [SerializeField]
         private AudioConfig _audioConfig;
@@ -93,7 +94,7 @@ namespace Audio
 
         public void MuteAllEffectSounds()
         {
-            var groupsToMute = new[] { AudioGroupType.EffectSounds, AudioGroupType.Effect3dSounds };
+            var groupsToMute = new[] { AudioGroupType.EffectSounds };
 
             foreach (AudioGroupType group in groupsToMute)
             {

@@ -67,7 +67,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 5a87cb1ff80a91e4aba35932da79df02, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -89,6 +89,7 @@ GameObject:
   - component: {fileID: 7726636709369122737}
   - component: {fileID: 595113277716778636}
   - component: {fileID: -7430895876764272124}
+  - component: {fileID: 459911205554405420}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -129,7 +130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _button: {fileID: -7430895876764272124}
-  _image: {fileID: 7726636709369122737}
+  _image: {fileID: 732768556071595546}
 --- !u!222 &7907968672747643009
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -227,3 +228,15 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &459911205554405420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5272113892441000455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11df340247964bccbeffa9f635d1b141, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

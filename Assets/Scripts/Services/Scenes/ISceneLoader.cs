@@ -6,6 +6,6 @@ namespace Services.Scenes
     {
         public SceneType SceneType { get; }
 
-        public void LoadScene(SceneType sceneType, ScreenTypes nextScreen = 0, bool isLoading = true);
+        public void LoadScene(SceneType sceneType, ScreenTypes nextScreen = 0);
     }
 }

@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 337019e914c04816960ded3244d804bc, type: 3}
+  m_Name: AudioConfig
+  m_EditorClassIdentifier: 
+  _audioMixer: {fileID: 24100000, guid: 9923378de9b1f8a4ca08d22dc76aede9, type: 2}
+  _audioGroups:
+  - _groupType: 1
+    _audioMixerGroup: {fileID: -698558650540262760, guid: 9923378de9b1f8a4ca08d22dc76aede9, type: 2}
+    _isOneAudioSource: 1
+    _audios: []
+  - _groupType: 2
+    _audioMixerGroup: {fileID: -4044208009277888087, guid: 9923378de9b1f8a4ca08d22dc76aede9, type: 2}
+    _isOneAudioSource: 0
+    _audios: []
+  - _groupType: 3
+    _audioMixerGroup: {fileID: -4742115945590737552, guid: 9923378de9b1f8a4ca08d22dc76aede9, type: 2}
+    _isOneAudioSource: 0
+    _audios:
+    - _clip: {fileID: 8300000, guid: d0c8ddb24fbb1ca4caf07228c701af9c, type: 3}
+      _id: Awesome
+      _volume: 1
+      _loop: 0
+    - _clip: {fileID: 8300000, guid: 7f16495e44c8df247858f6417e932b54, type: 3}
+      _id: Excellent
+      _volume: 1
+      _loop: 0
+    - _clip: {fileID: 8300000, guid: f370b422bdd27e94bae1817c2a120077, type: 3}
+      _id: Follow_the_stars_and_trace_the_letter
+      _volume: 1
+      _loop: 0
+    - _clip: {fileID: 8300000, guid: bd4fdb818396ead429b33986c1ca1b33, type: 3}
+      _id: Follow_the_stars_and_trace_the_number_en
+      _volume: 1
+      _loop: 0
+    - _clip: {fileID: 8300000, guid: 6eab588d25ae0594087be8fd88a52699, type: 3}
+      _id: Thats_good
+      _volume: 1
+      _loop: 0

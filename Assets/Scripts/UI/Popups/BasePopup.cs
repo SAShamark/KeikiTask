@@ -49,7 +49,6 @@ namespace UI.Popups
                 _closeButton.onClick.RemoveAllListeners();
 
                 _closeButton.onClick.AddListener(CloseTrigger);
-                _closeButton.onClick.AddListener(CloseButtonClickedSound);
             }
 
             Debug.Log($"{gameObject.name} popup showed");

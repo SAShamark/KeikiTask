@@ -4,7 +4,7 @@ using System.Security.Cryptography;
 using System.Text;
 using UnityEngine;
 
-namespace Services.DataProtection
+namespace Services.Storage.DataProtection
 {
     public static class DataProtectionManager
     {

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace UI.Screens.MainMenu
+namespace UI.Screens.MainMenu.Data
 {
     [Serializable]
     public class LevelData

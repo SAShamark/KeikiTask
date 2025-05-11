@@ -1,7 +1,7 @@
 using UnityEngine;
 using Zenject;
 
-namespace Audio
+namespace Installers
 {
     public class ScriptableObjectInstaller : MonoInstaller
     {

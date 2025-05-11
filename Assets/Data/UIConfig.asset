@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _screenModels:
   - _screenType: 2
-    _template: {fileID: 0}
+    _template: {fileID: -8122219333344431615, guid: 9667f25c7c3105e41bf8fb61892d51c8, type: 3}
     _isAddToStack: 1
   - _screenType: 3
-    _template: {fileID: 0}
-    _isAddToStack: 1
+    _template: {fileID: -6512617973071196426, guid: db072ae05de960c4a88973dabf2c81ee, type: 3}
+    _isAddToStack: 0
   _popupModels: []

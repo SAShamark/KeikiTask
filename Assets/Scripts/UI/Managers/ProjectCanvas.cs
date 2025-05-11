@@ -1,4 +1,5 @@
 using Audio;
+using Services;
 using UI.Popups;
 using UI.Screens;
 using UnityEngine;
@@ -6,7 +7,7 @@ using Zenject;
 
 namespace UI.Managers
 {
-    public class ProjectCanvas : MonoBehaviour, IUIManager
+    public class ProjectCanvas : MonoBehaviour, IUIManager, ILoadingInitialization
     {
         [SerializeField]
         private ScreensManager _screensManager;

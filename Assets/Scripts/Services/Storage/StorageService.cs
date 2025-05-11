@@ -1,6 +1,6 @@
 using System.IO;
 using Newtonsoft.Json;
-using Services.DataProtection;
+using Services.Storage.DataProtection;
 using UnityEngine;
 
 namespace Services.Storage
@@ -29,6 +29,7 @@ namespace Services.Storage
             Debug.Log($"Returned default data by key [{key}] by value [{defaultValue}]");
             return defaultValue;
         }
+
         public void DeleteAllData()
         {
             string directory = Application.persistentDataPath;
@@ -39,6 +40,7 @@ namespace Services.Storage
                 Directory.CreateDirectory(directory);
             }
         }
+
         private string BuildPath(string key)
         {
             return Path.Combine(Application.persistentDataPath, key);

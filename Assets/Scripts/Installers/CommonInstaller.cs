@@ -1,8 +1,12 @@
+using Audio;
+using Services.Coroutines;
+using Services.Scenes;
+using Services.Storage;
 using UI.Managers;
 using UnityEngine;
 using Zenject;
 
-namespace Audio
+namespace Installers
 {
     public class CommonInstaller : MonoInstaller
     {
@@ -12,12 +16,22 @@ namespace Audio
         [SerializeField]
         private ProjectCanvas _projectCanvas;
 
+        [SerializeField]
+        private CoroutineServices _coroutineServices;
+
         public override void InstallBindings()
         {
+            Container.Bind<IStorageService>().To<StorageService>().AsSingle();
+            Container.Bind<ISceneLoader>().To<SceneLoader>().AsSingle();
+            CoroutineInstaller();
             AudioInstaller();
             UIInstaller();
         }
 
+        private void CoroutineInstaller()
+        {
+            Container.Bind<ICoroutineServices>().FromInstance(_coroutineServices).AsSingle().NonLazy();
+        }
 
         private void AudioInstaller()
         {

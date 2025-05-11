@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 512a2f4dd4bd4ad59d9d9c7814b8d55b, type: 3}
-  m_Name: LevelData
+  m_Name: LevelConfig
   m_EditorClassIdentifier: 
   _levelData:
   - _groupName: Trace letters
@@ -34,7 +34,7 @@ MonoBehaviour:
     - {r: 1, g: 0.46021718, b: 0, a: 1}
     - {r: 1, g: 0, b: 0, a: 1}
   - _groupName: Trace shapes
-    _icon: {fileID: 21300000, guid: 9c6fc0b550856374995162ea1ef057fc, type: 3}
+    _icon: {fileID: 21300000, guid: b0455c64eda93ea469610557f58bfc2f, type: 3}
     _colors:
     - {r: 0.5803922, g: 0, b: 0.82745105, a: 1}
     - {r: 0.29411766, g: 0, b: 0.50980395, a: 1}
