@@ -85,8 +85,7 @@ namespace Gameplay.Entities.Item
         {
             ResetData();
 
-            _levelItem.Initialize(color);
-
+            _levelItem.Initialize(color, _follower);
 
             _audioCoroutine = StartCoroutine(PlayAudioThenLoad(soundName, () => NextStep(_currentRouteIndex)));
             _afkCoroutine = StartCoroutine(_afkManager.Manage());
@@ -185,6 +184,7 @@ namespace Gameplay.Entities.Item
                 return;
             }
 
+            _levelItem.SwitchPauseErased(false);
             _tipsManager.CircleObjectPool.TurnOffAllPool();
 
             _routeManager.ProcessRoute(_levelItem.RoutePaths[index]);
@@ -210,10 +210,12 @@ namespace Gameplay.Entities.Item
                 { SoundsConstants.AWESOME, SoundsConstants.EXCELLENT, SoundsConstants.THATS_GOOD };
             string randomSound = soundNames[Random.Range(0, soundNames.Length)];
             StartCoroutine(PlayAudioThenLoad(randomSound, () => OnLevelCompleted?.Invoke()));
+            _levelItem.ClearErased();
         }
 
         private void Deactivate()
         {
+            _levelItem.SwitchPauseErased(true);
             _follower.gameObject.SetActive(false);
             _tipsManager.Star.SetActive(false);
             _tipsManager.CircleObjectPool.TurnOffAllPool();
