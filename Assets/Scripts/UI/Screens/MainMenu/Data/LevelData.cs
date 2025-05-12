@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using Gameplay;
+using Gameplay.Entities;
+using Gameplay.Entities.Item;
 using UnityEngine;
 
 namespace UI.Screens.MainMenu.Data

@@ -1,4 +1,6 @@
 using Audio;
+using Gameplay.Entities;
+using Gameplay.Entities.Item;
 using UI.Screens.MainMenu.Data;
 using UnityEngine;
 using Zenject;
@@ -11,7 +13,7 @@ namespace Gameplay
         private Camera _camera;
 
         private LevelsManager _levelsManager;
-        private ItemControl _item;
+        private ItemController _item;
         private LevelData _currentLevelData;
         private IAudioManager _audioManager;
 
@@ -35,21 +37,29 @@ namespace Gameplay
             }
         }
 
-        private void LevelCompleted()
-        {
-            Destroy(_item.gameObject);
-            _levelsManager.NextLevel();
-            SpawnItem();
-        }
-
         private void SpawnItem()
         {
             _currentLevelData = _levelsManager.GetCurrentLevelData();
-            ItemControl item = Instantiate(_currentLevelData.ItemControl);
-            item.Initialize(_audioManager, _camera, _currentLevelData.Colors[_levelsManager.SelectedLevel],
-                _currentLevelData.SoundName);
+            
+            ItemController item = Instantiate(_levelsManager.LevelsConfig.ItemController);
+            Color color = _currentLevelData.Colors[_levelsManager.SelectedLevel];
+            string soundName = _currentLevelData.SoundName;
+            ItemControl itemControl = _currentLevelData.ItemControl;
+            
+            item.Initialize(_audioManager, _camera, color, soundName, itemControl);
             item.OnLevelCompleted += LevelCompleted;
             _item = item;
+        }
+
+        private void LevelCompleted()
+        {
+            _levelsManager.NextLevel();
+            
+            _currentLevelData = _levelsManager.GetCurrentLevelData();
+            Color color = _currentLevelData.Colors[_levelsManager.SelectedLevel];
+            string soundName = _currentLevelData.SoundName;
+            
+            _item.Init(color, soundName);
         }
     }
 }
